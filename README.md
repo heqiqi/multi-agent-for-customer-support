@@ -18,12 +18,14 @@
 *   **数据存储层**: 包括知识库、客户信息数据库、订单数据库和对话历史记录。
 
 ### 3. 工作流程
-1.首先判断是否是闲聊，如果是闲聊，请回答：这里是客户电话，无法回答此类问题。
-2.如果不知道客户名称,请先询问客户的 user id，不要有别的回答
-3.根据客户提供的user id，使用update_user_id，更新user id， 并获取历史对话记录
-4.使用user_id查询订单号，并将订单情况发送给客户，得到客户肯定后，再继续处理客户问题
-5.根据客户的回复，选择不同的专家对客户做支持
-6.如果多次解答，问题依旧没有解决，请转人工服务，或建议客户退货
+1. 首先判断是否是闲聊，如果是闲聊，请回答：这里是客户电话，无法回答此类问题。
+2. 如果不知道客户名称,请先询问客户的 user id，不要有别的回答
+3. 根据客户提供的user id，使用update_user_id，更新user id， 并获取历史对话记录
+4. 使用user_id查询订单号，并将订单情况发送给客户，得到客户肯定后，再继续处理客户问题
+5. 根据客户的回复，选择不同的专家对客户做支持
+6. 如果多次解答，问题依旧没有解决，请转人工服务，或建议客户退货
+#### 架构图
+![架构图](./docs/agents-orchestrator.png)
 
 ### 4. 测试&部署
 #### 4.1 Install Dependencies
@@ -66,3 +68,7 @@ curl -X POST http://localhost:8080/invocations   -H "Content-Type: application/j
 #### 4.7 Deploy to Bedrock Agentcore runtime
 refer：
 https://strandsagents.com/latest/documentation/docs/user-guide/deploy/deploy_to_bedrock_agentcore/#option-b-custom-agent
+
+
+1.Please provide a SAP OData Data Connection and configure a test data table that can be accessed via this connection. The OData connection must follow this format: https://<hostname>:<port>/sap/opu/odata/sap/<service_name>, and use the HTTPS protocol.
+2.Could we either launch a Windows EC2 instance, or have your team configure a Windows server? This server will be used for the configuration of SAP and Redshift services, with an estimated cost of approximately $200 per month.
